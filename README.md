@@ -1,5 +1,9 @@
 # @azguardwallet/types
 
+[![GitHub License](https://img.shields.io/github/license/AzguardWallet/azguard-wallet-types)](https://github.com/AzguardWallet/azguard-wallet-types/blob/main/LICENSE)
+[![NPM Version](https://img.shields.io/npm/v/@azguardwallet/types)](https://www.npmjs.com/package/@azguardwallet/types)
+[![NPM Downloads](https://img.shields.io/npm/dt/@azguardwallet/types)](https://www.npmjs.com/package/@azguardwallet/types)
+
 This library contains type declarations with annotations for Azguard Wallet inpage RPC client, that can be helpful for browser based apps written in TypeScript.
 
 ### How to use
