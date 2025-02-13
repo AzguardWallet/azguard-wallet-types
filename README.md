@@ -32,6 +32,10 @@ import type {
     OkResult,
 } from "@azguardwallet/types";
 
+if (!window.azguard) {
+    throw "Azguard Wallet is not installed";
+}
+
 const azguard = window.azguard.createClient();
 
 const account: CaipAccount = "aztec:31337:0xffff...";

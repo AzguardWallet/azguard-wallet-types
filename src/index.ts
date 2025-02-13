@@ -3,9 +3,9 @@ import { AzguardRpcClient } from "./client";
 declare global {
     interface Window {
         /**
-         * Azguard Wallet accessor
+         * Azguard Wallet accessor or undefined if Azguard Wallet is not installed
          */
-        azguard: {
+        azguard?: {
             /**
              * Version
              */
