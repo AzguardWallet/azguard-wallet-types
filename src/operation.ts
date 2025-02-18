@@ -5,6 +5,7 @@ import { CaipAccount, CaipChain } from "./dapp-session";
 /** Operation kind */
 export type OperationKind =
     | "add_note"
+    | "get_complete_address"
     | "register_contract"
     | "register_sender"
     | "send_transaction"
@@ -14,6 +15,7 @@ export type OperationKind =
 /** A request to perform some operation */
 export type Operation =
     | AddNoteOperation
+    | GetCompleteAddressOperation
     | RegisterContractOperation
     | RegisterSenderOperation
     | SendTransactionOperation
@@ -23,6 +25,7 @@ export type Operation =
 /** Operation result */
 export type OperationResult =
     | AddNoteResult
+    | GetCompleteAddressResult
     | RegisterContractResult
     | RegisterSenderResult
     | SendTransactionResult
@@ -41,6 +44,17 @@ export type AddNoteOperation = {
 
 /** A result of the "add_note" operation */
 export type AddNoteResult = Result<void>;
+
+/** A request to get complete address of the specified account */
+export type GetCompleteAddressOperation = {
+    /** Operation kind */
+    kind: "get_complete_address";
+    /** Account to get complete address of */
+    account: CaipAccount;
+};
+
+/** A result of the "get_complete_address" operation (CompleteAddress) */
+export type GetCompleteAddressResult = Result<unknown>;
 
 /** A request to register contract in PXE */
 export type RegisterContractOperation = {
