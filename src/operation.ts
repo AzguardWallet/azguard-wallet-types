@@ -35,8 +35,8 @@ export type AddNoteOperation = {
     kind: "add_note";
     /** Account to add the note for */
     account: CaipAccount;
-    /** Extended note, converted to string */
-    note: string;
+    /** Note to add (ExtendedNote) */
+    note: unknown;
 };
 
 /** A result of the "add_note" operation */
