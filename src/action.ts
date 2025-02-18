@@ -6,7 +6,7 @@ export type ActionKind =
     | "add_private_authwit"
     | "add_public_authwit"
     | "call"
-    | "call_ext";
+    | "encoded_call";
 
 /** A request to perform some action */
 export type Action =
@@ -14,7 +14,7 @@ export type Action =
     | AddPrivateAuthwitAction
     | AddPublicAuthwitAction
     | CallAction
-    | CallExtAction;
+    | EncodedCallAction;
 
 /** A request to add a capsule to PXE */
 export type AddCapsuleAction = {
@@ -62,9 +62,9 @@ export type CallAction = {
 };
 
 /** A request to call a contract with encoded args (matches FunctionCall from aztec.js) */
-export type CallExtAction = {
+export type EncodedCallAction = {
     /** Action kind */
-    kind: "call_ext";
+    kind: "encoded_call";
     /** Name of the function */
     name: string;
     /** Address of the contract (AztecAddress) */
