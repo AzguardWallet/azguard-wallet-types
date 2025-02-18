@@ -34,6 +34,11 @@ export type AddPrivateAuthwitAction = {
     kind: "add_private_authwit";
     /** Original content from which a message hash will be comupted */
     content: AuthwitContent;
+    /**
+     * Authwitness to add (Fr[]).
+     * If not specified, the wallet will create it.
+     */
+    authwit?: string[];
 };
 
 /** A request to call the AuthRegistry contract to authorize message hash computed from the given content */
