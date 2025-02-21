@@ -182,7 +182,7 @@ export type ViewsSimulationResult = {
     encoded: string[][];
     /** List of results, decoded with function return types ABI (AbiDecoded[]) */
     decoded: unknown[];
-}
+};
 
 /** A result of the "simulate_views" operation */
 export type SimulateViewsResult = Result<ViewsSimulationResult>;

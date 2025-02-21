@@ -1,4 +1,5 @@
 import { ActionKind } from "./action";
+import { EventKind } from "./event";
 import { OperationKind } from "./operation";
 
 /** Chain id (CAIP-2) */
@@ -26,7 +27,7 @@ export type DappPermissions = {
     /** List of methods */
     methods?: (OperationKind | ActionKind)[];
     /** List of events */
-    events?: CaipAccount[];
+    events?: EventKind[];
 };
 
 /** Dapp session */

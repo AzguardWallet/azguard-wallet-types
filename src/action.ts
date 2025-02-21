@@ -21,9 +21,9 @@ export type AddCapsuleAction = {
     /** Action kind */
     kind: "add_capsule";
     /** Address of the contract to add the capsule to (AztecAddress)  */
-    contract: string,
+    contract: string;
     /** Storage slot to add the capsule to (Fr) */
-    storageSlot: string,
+    storageSlot: string;
     /** Capsule to be added (Fr[]) */
     capsule: string[];
 };
