@@ -1,6 +1,6 @@
 {
     "name": "@azguardwallet/types",
-    "version": "0.3.0",
+    "version": "0.3.1",
     "description": "Typings for Azguard Wallet inpage RPC client",
     "author": "Azguard Wallet",
     "homepage": "https://github.com/AzguardWallet/azguard-wallet-types",
