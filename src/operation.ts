@@ -1,4 +1,4 @@
-import { Action } from "./action";
+import { Action, CallAction, EncodedCallAction } from "./action";
 import { Result } from "./result";
 import { CaipAccount, CaipChain } from "./dapp-session";
 
@@ -10,7 +10,8 @@ export type OperationKind =
     | "register_sender"
     | "send_transaction"
     | "simulate_transaction"
-    | "simulate_unconstrained";
+    | "simulate_unconstrained"
+    | "simulate_views";
 
 /** A request to perform some operation */
 export type Operation =
@@ -20,7 +21,8 @@ export type Operation =
     | RegisterSenderOperation
     | SendTransactionOperation
     | SimulateTransactionOperation
-    | SimulateUnconstrainedOperation;
+    | SimulateUnconstrainedOperation
+    | SimulateViewsOperation;
 
 /** Operation result */
 export type OperationResult =
@@ -30,7 +32,8 @@ export type OperationResult =
     | RegisterSenderResult
     | SendTransactionResult
     | SimulateTransactionResult
-    | SimulateUnconstrainedResult;
+    | SimulateUnconstrainedResult
+    | SimulateViewsResult;
 
 /** A request to add a note to PXE */
 export type AddNoteOperation = {
@@ -162,3 +165,24 @@ export type SimulateUnconstrainedOperation = {
 
 /** A result of the "simulate_unconstrained" operation (AbiDecoded) */
 export type SimulateUnconstrainedResult = Result<unknown>;
+
+/** A request to simulate the batch of view calls */
+export type SimulateViewsOperation = {
+    /** Operation kind */
+    kind: "simulate_views";
+    /** Address of the account to simulate for */
+    account: CaipAccount;
+    /** Batch of view calls to simulate */
+    calls: (CallAction | EncodedCallAction)[];
+};
+
+/** Wrapped views simulation results */
+export type ViewsSimulationResult = {
+    /** List of results, encoded with function return types ABI (Fr[][]) */
+    encoded: string[][];
+    /** List of results, decoded with function return types ABI (AbiDecoded[]) */
+    decoded: unknown[];
+}
+
+/** A result of the "simulate_views" operation */
+export type SimulateViewsResult = Result<ViewsSimulationResult>;
