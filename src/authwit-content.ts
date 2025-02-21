@@ -26,19 +26,19 @@ export type EncodedCallAuthwitContent = {
     /** Address of the caller (AztecAddress) */
     caller: string;
     /** Name of the function */
-    name: string;
+    name?: string;
     /** Address of the contract (AztecAddress) */
     to: string;
     /** Selector of the function (FunctionSelector) */
     selector: string;
     /** Type of the function (FunctionType) */
-    type: string;
+    type?: string;
     /** Whether this call can makes modifications to state or not */
-    isStatic: boolean;
+    isStatic?: boolean;
     /** Encoded arguments (Fr[]) */
     args: string[];
     /** Return types for decoding (AbiType[]) */
-    returnTypes: unknown[];
+    returnTypes?: unknown[];
 };
 
 /** Arbitrary intent to be authorized */
