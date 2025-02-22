@@ -26,14 +26,14 @@ export type Operation =
 
 /** Operation result */
 export type OperationResult =
-    | AddNoteResult
-    | GetCompleteAddressResult
-    | RegisterContractResult
-    | RegisterSenderResult
-    | SendTransactionResult
-    | SimulateTransactionResult
-    | SimulateUnconstrainedResult
-    | SimulateViewsResult;
+    | Result<AddNoteResult>
+    | Result<GetCompleteAddressResult>
+    | Result<RegisterContractResult>
+    | Result<RegisterSenderResult>
+    | Result<SendTransactionResult>
+    | Result<SimulateTransactionResult>
+    | Result<SimulateUnconstrainedResult>
+    | Result<SimulateViewsResult>;
 
 /** A request to add a note to PXE */
 export type AddNoteOperation = {
@@ -46,7 +46,7 @@ export type AddNoteOperation = {
 };
 
 /** A result of the "add_note" operation */
-export type AddNoteResult = Result<void>;
+export type AddNoteResult = void;
 
 /** A request to get complete address of the specified account */
 export type GetCompleteAddressOperation = {
@@ -57,7 +57,7 @@ export type GetCompleteAddressOperation = {
 };
 
 /** A result of the "get_complete_address" operation (CompleteAddress) */
-export type GetCompleteAddressResult = Result<unknown>;
+export type GetCompleteAddressResult = unknown;
 
 /** A request to register contract in PXE */
 export type RegisterContractOperation = {
@@ -80,7 +80,7 @@ export type RegisterContractOperation = {
 };
 
 /** A result of the "register_contract" operation */
-export type RegisterContractResult = Result<void>;
+export type RegisterContractResult = void;
 
 /** A request to register sender in PXE */
 export type RegisterSenderOperation = {
@@ -93,7 +93,7 @@ export type RegisterSenderOperation = {
 };
 
 /** A result of the "register_sender" operation */
-export type RegisterSenderResult = Result<void>;
+export type RegisterSenderResult = void;
 
 /** A request to send the transaction */
 export type SendTransactionOperation = {
@@ -114,7 +114,7 @@ export type SendTransactionOperation = {
 };
 
 /** A result of the "send_transaction" operation (TxHash) */
-export type SendTransactionResult = Result<string>;
+export type SendTransactionResult = string;
 
 /** A request to simulate the transaction */
 export type SimulateTransactionOperation = {
@@ -136,8 +136,8 @@ export type SimulateTransactionOperation = {
     simulatePublic?: boolean;
 };
 
-/** Wrapped simulation results */
-export type SimulationReturn = {
+/** A result of the "simulate_transaction" operation */
+export type SimulateTransactionResult = {
     /** Gas usage info (GasUsed) */
     gasUsed: unknown;
     /** Private return values (NestedProcessReturnValues) */
@@ -145,9 +145,6 @@ export type SimulationReturn = {
     /** Public return values (NestedProcessReturnValues[]) */
     publicReturn: unknown[];
 };
-
-/** A result of the "simulate_transaction" operation */
-export type SimulateTransactionResult = Result<SimulationReturn>;
 
 /** A request to simulate the unconstrained function */
 export type SimulateUnconstrainedOperation = {
@@ -164,7 +161,7 @@ export type SimulateUnconstrainedOperation = {
 };
 
 /** A result of the "simulate_unconstrained" operation (AbiDecoded) */
-export type SimulateUnconstrainedResult = Result<unknown>;
+export type SimulateUnconstrainedResult = unknown;
 
 /** A request to simulate the batch of view calls */
 export type SimulateViewsOperation = {
@@ -176,13 +173,10 @@ export type SimulateViewsOperation = {
     calls: (CallAction | EncodedCallAction)[];
 };
 
-/** Wrapped views simulation results */
-export type ViewsSimulationResult = {
+/** A result of the "simulate_views" operation */
+export type SimulateViewsResult = {
     /** List of results, encoded with function return types ABI (Fr[][]) */
     encoded: string[][];
     /** List of results, decoded with function return types ABI (AbiDecoded[]) */
     decoded: unknown[];
 };
-
-/** A result of the "simulate_views" operation */
-export type SimulateViewsResult = Result<ViewsSimulationResult>;

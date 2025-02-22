@@ -30,6 +30,7 @@ import type {
     CallAction,
     FailedResult,
     OkResult,
+    SendTransactionResult,
 } from "@azguardwallet/types";
 
 if (!window.azguard) {
@@ -58,11 +59,11 @@ const [result] = await azguard.request("execute", {
     ],
 });
 
-if (result.kind === "ok") {
-    const txHash = (result as OkResult<string>).result;
+if (result.status === "ok") {
+    const txHash = (result as OkResult<SendTransactionResult>).result;
     // ...
 }
-else if (result.kind === "failed") {
+else if (result.status === "failed") {
     const error = (result as FailedResult).error;
     // ...
 }
