@@ -10,43 +10,28 @@ export type OperationKind =
     | "register_sender"
     | "send_transaction"
     | "simulate_transaction"
-    | "simulate_unconstrained"
+    | "simulate_utility"
     | "simulate_views";
 
 /** A request to perform some operation */
 export type Operation =
-    | AddNoteOperation
     | GetCompleteAddressOperation
     | RegisterContractOperation
     | RegisterSenderOperation
     | SendTransactionOperation
     | SimulateTransactionOperation
-    | SimulateUnconstrainedOperation
+    | SimulateUtilityOperation
     | SimulateViewsOperation;
 
 /** Operation result */
 export type OperationResult =
-    | Result<AddNoteResult>
     | Result<GetCompleteAddressResult>
     | Result<RegisterContractResult>
     | Result<RegisterSenderResult>
     | Result<SendTransactionResult>
     | Result<SimulateTransactionResult>
-    | Result<SimulateUnconstrainedResult>
+    | Result<SimulateUtilityResult>
     | Result<SimulateViewsResult>;
-
-/** A request to add a note to PXE */
-export type AddNoteOperation = {
-    /** Operation kind */
-    kind: "add_note";
-    /** Account to add the note for */
-    account: CaipAccount;
-    /** Note to add (ExtendedNote) */
-    note: unknown;
-};
-
-/** A result of the "add_note" operation */
-export type AddNoteResult = void;
 
 /** A request to get complete address of the specified account */
 export type GetCompleteAddressOperation = {
@@ -146,10 +131,10 @@ export type SimulateTransactionResult = {
     publicReturn: unknown[];
 };
 
-/** A request to simulate the unconstrained function */
-export type SimulateUnconstrainedOperation = {
+/** A request to simulate the utility function */
+export type SimulateUtilityOperation = {
     /** Operation kind */
-    kind: "simulate_unconstrained";
+    kind: "simulate_utility";
     /** Address of the account to simulate for */
     account: CaipAccount;
     /** Address of the contract (AztecAddress) */
@@ -160,8 +145,8 @@ export type SimulateUnconstrainedOperation = {
     args: any[];
 };
 
-/** A result of the "simulate_unconstrained" operation (AbiDecoded) */
-export type SimulateUnconstrainedResult = unknown;
+/** A result of the "simulate_utility" operation (AbiDecoded) */
+export type SimulateUtilityResult = unknown;
 
 /** A request to simulate the batch of view calls */
 export type SimulateViewsOperation = {
