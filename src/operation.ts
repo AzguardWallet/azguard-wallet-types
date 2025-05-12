@@ -8,6 +8,7 @@ export type OperationKind =
     | "get_complete_address"
     | "register_contract"
     | "register_sender"
+    | "register_token"
     | "send_transaction"
     | "simulate_transaction"
     | "simulate_utility"
@@ -18,6 +19,7 @@ export type Operation =
     | GetCompleteAddressOperation
     | RegisterContractOperation
     | RegisterSenderOperation
+    | RegisterTokenOperation 
     | SendTransactionOperation
     | SimulateTransactionOperation
     | SimulateUtilityOperation
@@ -28,6 +30,7 @@ export type OperationResult =
     | Result<GetCompleteAddressResult>
     | Result<RegisterContractResult>
     | Result<RegisterSenderResult>
+    | Result<RegisterTokenResult>
     | Result<SendTransactionResult>
     | Result<SimulateTransactionResult>
     | Result<SimulateUtilityResult>
@@ -79,6 +82,19 @@ export type RegisterSenderOperation = {
 
 /** A result of the "register_sender" operation */
 export type RegisterSenderResult = void;
+
+/** A request to import the token into the wallet */
+export type RegisterTokenOperation = {
+    /** Operation kind */
+    kind: "register_token",
+    /** Address of the account to add the token for */
+    account: CaipAccount,
+    /** Address of the token contract (AztecAddress) */
+    address: string,
+}
+
+/** A result of the "register_token" operation */
+export type RegisterTokenResult = Result<void>;
 
 /** A request to send the transaction */
 export type SendTransactionOperation = {
