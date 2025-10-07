@@ -1,12 +1,7 @@
 import { AuthwitContent } from "./authwit-content";
 
 /** Action kind */
-export type ActionKind =
-    | "add_capsule"
-    | "add_private_authwit"
-    | "add_public_authwit"
-    | "call"
-    | "encoded_call";
+export type ActionKind = Action["kind"];
 
 /** A request to perform some action */
 export type Action =
