@@ -1,8 +1,8 @@
 /** Result object */
-export type Result<T> = OkResult<T> | FailedResult | SkippedResult;
+export type Result<T = unknown> = OkResult<T> | FailedResult | SkippedResult;
 
 /** Successful result, containing returned value */
-export type OkResult<T> = {
+export type OkResult<T = unknown> = {
     /** Result status */
     status: "ok";
     /** Returned value */

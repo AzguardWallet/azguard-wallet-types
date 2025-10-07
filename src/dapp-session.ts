@@ -11,7 +11,7 @@ export type CaipAccount = `${CaipChain}:${string}`;
 /** DApp metadata */
 export type DappMetadata = {
     /** Name */
-    name: string;
+    name?: string;
     /** Short description */
     description?: string;
     /** Logo URI */
