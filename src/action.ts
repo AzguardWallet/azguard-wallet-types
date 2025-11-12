@@ -6,6 +6,7 @@ export type ActionKind = Action["kind"];
 /** A request to perform some action */
 export type Action =
     | AddCapsuleAction
+    | AddExtraArgsAction
     | AddPrivateAuthwitAction
     | AddPublicAuthwitAction
     | CallAction
@@ -21,6 +22,14 @@ export type AddCapsuleAction = {
     storageSlot: string;
     /** Capsule to be added (Fr[]) */
     capsule: string[];
+};
+
+/** A request to add extra args to be available during execution */
+export type AddExtraArgsAction = {
+    /** Action kind */
+    kind: "add_extra_args";
+    /** Args (Fr[]) */
+    args: string[];
 };
 
 /** A request to add an authwit for the message hash computed from the given content to PXE */
