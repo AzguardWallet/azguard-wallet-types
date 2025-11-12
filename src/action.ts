@@ -63,6 +63,8 @@ export type CallAction = {
     method: string;
     /** Arguments (unencoded) */
     args: any[];
+    /** Whether or not the caller's address should be hidden from the called contract */
+    hideSender?: boolean;
 };
 
 /** A request to call a contract with encoded args (matches FunctionCall from aztec.js) */
@@ -77,6 +79,8 @@ export type EncodedCallAction = {
     selector: string;
     /** Type of the function (FunctionType) */
     type?: string;
+    /** Whether or not the caller's address should be hidden from the called contract */
+    hideMsgSender?: boolean;
     /** Whether this call can makes modifications to state or not */
     isStatic?: boolean;
     /** Encoded arguments (Fr[]) */
