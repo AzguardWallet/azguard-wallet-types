@@ -149,6 +149,26 @@ export type RegisterTokenOperation = {
 /** A result of the "register_token" operation */
 export type RegisterTokenResult = Result<void>;
 
+/** Fees and gas options */
+export type FeeOptions = {
+    /** Tells if fee payment payload (either fee juice with claim or fpc) is included */
+    readonly embeddedFeePayment?: "fjwc" | "fpc";
+    /** Suggest gas limits to be used at the first step of estimation */
+    readonly gasLimits?: GasLimits;
+    /** Suggest teardown gas limits to be used at the first step of estimation */
+    readonly teardownGasLimits?: GasLimits;
+    /** Multiplier for the simulated gas */
+    readonly gasPadding?: number;
+};
+
+/** Gas limits */
+export type GasLimits = {
+    /** DA gas */
+    readonly daGas: number;
+    /** L2 gas */
+    readonly l2Gas: number;
+};
+
 /** A request to send the transaction */
 export type SendTransactionOperation = {
     /** Operation kind */
@@ -156,15 +176,12 @@ export type SendTransactionOperation = {
     /** Address of the account to send transaction from */
     account: CaipAccount;
     /**
-     * Batch of calls to be passed to the account contract for the "execution" phase
+     * Batch of calls to be passed to the account contract
      * and additional actions, that may be needed for its execution
      * */
     actions: Action[];
-    /**
-     * Batch of calls to be passed to the account contract for the "setup" phase
-     * and additional actions, that may be needed for its execution
-     * */
-    setup?: Action[];
+    /** Fees and gas options */
+    fee?: FeeOptions;
 };
 
 /** A result of the "send_transaction" operation (TxHash) */
@@ -177,15 +194,12 @@ export type SimulateTransactionOperation = {
     /** Address of the account to send transaction from */
     account: CaipAccount;
     /**
-     * Batch of calls to be passed to the account contract for the "execution" phase
+     * Batch of calls to be passed to the account contract
      * and additional actions, that may be needed for its execution
      * */
     actions: Action[];
-    /**
-     * Batch of calls to be passed to the account contract for the "setup" phase
-     * and additional actions, that may be needed for its execution
-     * */
-    setup?: Action[];
+    /** Fees and gas options */
+    fee?: FeeOptions;
     /** Whether to also simulate enqueued public calls or not */
     simulatePublic?: boolean;
 };
