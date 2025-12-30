@@ -255,16 +255,10 @@ export type AztecGetPrivateEventsOperation = {
     kind: "aztec_getPrivateEvents";
     /** Chain to execute request for */
     chain: CaipChain;
-    /** The address of the contract to get events from (AztecAddress) */
-    contractAddress: unknown;
     /** Metadata of the event. This should be the class generated from the contract. e.g. Contract.events.Event (EventMetadataDefinition) */
     eventMetadata: unknown;
-    /** The block number to search from */
-    from: number;
-    /** The amount of blocks to search */
-    numBlocks: number;
-    /** The addresses that decrypted the logs (AztecAddress[]) */
-    recipients: unknown[];
+    /** Private event filter (PrivateEventFilter) */
+    eventFilter: unknown;
 };
 
 /** A result of the "aztec_getPrivateEvents" operation (T[]) */
@@ -326,8 +320,8 @@ export type AztecRegisterContractOperation = {
     kind: "aztec_registerContract";
     /** Chain to execute request for */
     chain: CaipChain;
-    /** Contract instance (AztecAddress | ContractInstanceWithAddress | ContractInstantiationData | ContractInstanceAndArtifact) */
-    instanceData: unknown;
+    /** Contract instance (ContractInstanceWithAddress) */
+    instance: unknown;
     /** Contract artifact (ContractArtifact) */
     artifact?: unknown;
     /** Secret key (Fr) */
@@ -358,12 +352,8 @@ export type AztecSimulateUtilityOperation = {
     kind: "aztec_simulateUtility";
     /** Address of the account to simulate utility function from */
     account: CaipAccount;
-    /** The name of the utility contract function to be called */
-    functionName: string;
-    /** The arguments to be provided to the function */
-    args: any[];
-    /** The address of the contract to be called (AztecAddress) */
-    to: unknown;
+    /** Function call (FunctionCall) */
+    call: unknown;
     /** (Optional) The authentication witnesses required for the function call (AuthWitness[]) */
     authwits?: unknown[];
 };
@@ -407,7 +397,7 @@ export type AztecCreateAuthWitOperation = {
     kind: "aztec_createAuthWit";
     /** Address of the account to create authwit for */
     account: CaipAccount;
-    /** Intent or message hash (Fr | Buffer<ArrayBuffer> | IntentInnerHash | CallIntent) */
+    /** Intent or message hash (Fr | IntentInnerHash | CallIntent) */
     messageHashOrIntent: unknown;
 };
 
