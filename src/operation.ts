@@ -21,7 +21,6 @@ export type Operation =
     | AztecGetContractMetadataOperation
     | AztecGetPrivateEventsOperation
     | AztecGetChainInfoOperation
-    | AztecGetTxReceiptOperation
     | AztecRegisterSenderOperation
     | AztecGetAddressBookOperation
     | AztecRegisterContractOperation
@@ -47,7 +46,6 @@ export type OperationResult =
     | Result<AztecGetContractMetadataResult>
     | Result<AztecGetPrivateEventsResult>
     | Result<AztecGetChainInfoResult>
-    | Result<AztecGetTxReceiptResult>
     | Result<AztecRegisterSenderResult>
     | Result<AztecGetAddressBookResult>
     | Result<AztecRegisterContractResult>
@@ -229,8 +227,6 @@ export type AztecGetContractClassMetadataOperation = {
     chain: CaipChain;
     /** Identifier of the class (Fr) */
     id: unknown;
-    /** Whether or not to also return contract artifact */
-    includeArtifact?: boolean;
 };
 
 /** A result of the "aztec_getContractClassMetadata" operation (ContractClassMetadata) */
@@ -274,19 +270,6 @@ export type AztecGetChainInfoOperation = {
 
 /** A result of the "aztec_getChainInfo" operation (ChainInfo) */
 export type AztecGetChainInfoResult = unknown;
-
-/** Aztec.js Wallet request */
-export type AztecGetTxReceiptOperation = {
-    /** Operation kind */
-    kind: "aztec_getTxReceipt";
-    /** Chain to execute request for */
-    chain: CaipChain;
-    /** The transaction hash (TxHash) */
-    txHash: unknown;
-};
-
-/** A result of the "aztec_getTxReceipt" operation (TxReceipt) */
-export type AztecGetTxReceiptResult = unknown;
 
 /** Aztec.js Wallet request */
 export type AztecRegisterSenderOperation = {
@@ -354,8 +337,8 @@ export type AztecSimulateUtilityOperation = {
     account: CaipAccount;
     /** Function call (FunctionCall) */
     call: unknown;
-    /** (Optional) The authentication witnesses required for the function call (AuthWitness[]) */
-    authwits?: unknown[];
+    /** Options (SimulateUtilityOptions: { scope?, authWitnesses? }) */
+    opts: unknown;
 };
 
 /** A result of the "aztec_simulateUtility" operation (UtilitySimulationResult) */
@@ -397,7 +380,7 @@ export type AztecCreateAuthWitOperation = {
     kind: "aztec_createAuthWit";
     /** Address of the account to create authwit for */
     account: CaipAccount;
-    /** Intent or message hash (Fr | IntentInnerHash | CallIntent) */
+    /** Intent or message hash (IntentInnerHash | CallIntent) */
     messageHashOrIntent: unknown;
 };
 
