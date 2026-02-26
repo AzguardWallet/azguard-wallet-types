@@ -27,6 +27,7 @@ export type Operation =
     | AztecSimulateTxOperation
     | AztecSimulateUtilityOperation
     | AztecProfileTxOperation
+    | AztecGetAccountsOperation
     | AztecSendTxOperation
     | AztecCreateAuthWitOperation;
 
@@ -52,6 +53,7 @@ export type OperationResult =
     | Result<AztecSimulateTxResult>
     | Result<AztecSimulateUtilityResult>
     | Result<AztecProfileTxResult>
+    | Result<AztecGetAccountsResult>
     | Result<AztecSendTxResult>
     | Result<AztecCreateAuthWitResult>;
 
@@ -360,6 +362,17 @@ export type AztecProfileTxOperation = {
 export type AztecProfileTxResult = unknown;
 
 /** Aztec.js Wallet request */
+export type AztecGetAccountsOperation = {
+    /** Operation kind */
+    kind: "aztec_getAccounts";
+    /** Chain to execute request for */
+    chain: CaipChain;
+};
+
+/** A result of the "aztec_getAccounts" operation (Aliased<AztecAddress>[]) */
+export type AztecGetAccountsResult = unknown;
+
+/** Aztec.js Wallet request */
 export type AztecSendTxOperation = {
     /** Operation kind */
     kind: "aztec_sendTx";
@@ -371,7 +384,7 @@ export type AztecSendTxOperation = {
     opts: unknown;
 };
 
-/** A result of the "aztec_sendTx" operation (TxHash) */
+/** A result of the "aztec_sendTx" operation (TxHash | TxReceipt) */
 export type AztecSendTxResult = unknown;
 
 /** Aztec.js Wallet request */
