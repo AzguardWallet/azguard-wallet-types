@@ -14,7 +14,7 @@ export type Operation =
     | RegisterTokenOperation
     | SendTransactionOperation
     | SimulateTransactionOperation
-    | SimulateUtilityOperation
+    | ExecuteUtilityOperation
     | SimulateViewsOperation
     // Aztec.js interface:
     | AztecGetContractClassMetadataOperation
@@ -25,7 +25,7 @@ export type Operation =
     | AztecGetAddressBookOperation
     | AztecRegisterContractOperation
     | AztecSimulateTxOperation
-    | AztecSimulateUtilityOperation
+    | AztecExecuteUtilityOperation
     | AztecProfileTxOperation
     | AztecGetAccountsOperation
     | AztecSendTxOperation
@@ -40,7 +40,7 @@ export type OperationResult =
     | Result<RegisterTokenResult>
     | Result<SendTransactionResult>
     | Result<SimulateTransactionResult>
-    | Result<SimulateUtilityResult>
+    | Result<ExecuteUtilityResult>
     | Result<SimulateViewsResult>
     // Aztec.js interface:
     | Result<AztecGetContractClassMetadataResult>
@@ -51,7 +51,7 @@ export type OperationResult =
     | Result<AztecGetAddressBookResult>
     | Result<AztecRegisterContractResult>
     | Result<AztecSimulateTxResult>
-    | Result<AztecSimulateUtilityResult>
+    | Result<AztecExecuteUtilityResult>
     | Result<AztecProfileTxResult>
     | Result<AztecGetAccountsResult>
     | Result<AztecSendTxResult>
@@ -184,11 +184,11 @@ export type SimulateTransactionResult = {
     publicReturn: unknown[];
 };
 
-/** A request to simulate the utility function */
-export type SimulateUtilityOperation = {
+/** A request to execute the utility function */
+export type ExecuteUtilityOperation = {
     /** Operation kind */
-    kind: "simulate_utility";
-    /** Address of the account to simulate for */
+    kind: "execute_utility";
+    /** Address of the account to execute for */
     account: CaipAccount;
     /** Address of the contract (AztecAddress) */
     contract: string;
@@ -198,8 +198,8 @@ export type SimulateUtilityOperation = {
     args: any[];
 };
 
-/** A result of the "simulate_utility" operation (AbiDecoded) */
-export type SimulateUtilityResult = unknown;
+/** A result of the "execute_utility" operation (AbiDecoded) */
+export type ExecuteUtilityResult = unknown;
 
 /** A request to simulate the batch of view calls */
 export type SimulateViewsOperation = {
@@ -332,19 +332,19 @@ export type AztecSimulateTxOperation = {
 export type AztecSimulateTxResult = unknown;
 
 /** Aztec.js Wallet request */
-export type AztecSimulateUtilityOperation = {
+export type AztecExecuteUtilityOperation = {
     /** Operation kind */
-    kind: "aztec_simulateUtility";
-    /** Address of the account to simulate utility function from */
+    kind: "aztec_executeUtility";
+    /** Address of the account to execute utility function from */
     account: CaipAccount;
     /** Function call (FunctionCall) */
     call: unknown;
-    /** Options (SimulateUtilityOptions: { scope?, authWitnesses? }) */
+    /** Options (ExecuteUtilityOptions: { scope?, authWitnesses? }) */
     opts: unknown;
 };
 
-/** A result of the "aztec_simulateUtility" operation (UtilitySimulationResult) */
-export type AztecSimulateUtilityResult = unknown;
+/** A result of the "aztec_executeUtility" operation (UtilityExecutionResult) */
+export type AztecExecuteUtilityResult = unknown;
 
 /** Aztec.js Wallet request */
 export type AztecProfileTxOperation = {
